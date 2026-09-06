@@ -25,7 +25,7 @@ jobs:
       - name: Compile Sketch to BIN
         run: |
           arduino-cli compile \
-            --fqbn esp32:esp32:esp32s3:CDCOnBoot=cdc,USBMode=tinyusb,PartitionScheme=default_8MB \
+            --fqbn esp32:esp32:esp32s3:CDCOnBoot=cdc \
             --output-dir ./build \
             --verbose \
             ./esp32-audio-sync
