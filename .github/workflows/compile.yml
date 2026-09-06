@@ -25,7 +25,9 @@ jobs:
       - name: Download USB Host Library
         run: |
           mkdir -p ./libraries
-          GIT_TERMINAL_PROMPT=0 git clone --depth 1 https://github.com/tobozo/ESP32-USB-Host-MSC.git ./libraries/ESP32_USB_Host_MSC
+          curl -L -s https://github.com/tobozo/ESP32-USB-Host-MSC/archive/refs/heads/master.zip -o ./msc.zip
+          unzip -q ./msc.zip -d ./libraries/
+          mv ./libraries/ESP32-USB-Host-MSC-master ./libraries/ESP32-USB-Host-MSC
 
       - name: Compile Sketch to BIN
         run: |
