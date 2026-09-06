@@ -20,20 +20,19 @@ jobs:
           arduino-cli config init
           arduino-cli config add board_manager.additional_urls https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json
           arduino-cli core update-index
-          arduino-cli core install esp32:esp32
-
-      - name: Install USB Host Library
-        run: |
-          arduino-cli lib install "ESP32_USB_Host_MSC" || true
+          arduino-cli core install esp32:esp32@3.0.7
 
       - name: Compile Sketch to BIN
         run: |
-          arduino-cli compile --fqbn esp32:esp32:esp32s3:CDCOnBoot=cdc,USBMode=tinyusb \
+          arduino-cli compile \
+            --fqbn esp32:esp32:esp32s3:CDCOnBoot=cdc,USBMode=tinyusb,PartitionScheme=default_8MB \
             --output-dir ./build \
+            --verbose \
             ./esp32-audio-sync
 
       - name: Upload BIN Artifact
         uses: actions/upload-artifact@v4
+        if: success()
         with:
           name: esp32s3-firmware
           path: ./build/*.bin
