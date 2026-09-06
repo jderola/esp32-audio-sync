@@ -25,7 +25,7 @@ jobs:
       - name: Download USB Host Library
         run: |
           mkdir -p ./libraries
-          git clone https://github.com/chege/ESP32_USB_Host_MSC.git ./libraries/ESP32_USB_Host_MSC
+          GIT_TERMINAL_PROMPT=0 git clone --depth 1 https://github.com/tobozo/ESP32-USB-Host-MSC.git ./libraries/ESP32_USB_Host_MSC
 
       - name: Compile Sketch to BIN
         run: |
