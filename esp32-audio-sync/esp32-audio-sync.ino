@@ -4,7 +4,8 @@
 #include <Preferences.h>
 #include <FS.h>
 #include <time.h>
-#include "USBHostMSC.h" 
+#include "USB.h"
+#include "USBHostMSCDrive.h"
 
 // --- Network & Destination Config ---
 const char* WIFI_SSID     = "Virus";
@@ -17,7 +18,7 @@ const char* WEBHOOK_PATH  = "/webhook/audio-diary";
 #define CHUNK_SIZE 4096 // 4 KB RAM streaming buffer
 
 Preferences prefs;
-USBHostMSC msc;
+USBHostMSCDrive msc;
 
 // Scan root directory of the mounted filesystem for the newest .wav file
 bool findLatestWavFile(fs::FS &fs, String &latestPath, size_t &fileSize, time_t &modTime) {
